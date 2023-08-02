@@ -6,7 +6,7 @@ namespace RequestApplication.Infrastructure
     {
         public RequestApplicationDbContext() 
         {
-            for(var i=0; i < 100; i++)
+            for(var i=0; i < 20; i++)
             {
                 ApplicationRequest.Add(new RequestObj
                 {

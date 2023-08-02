@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "sN/Mwj+vS8WLZqE4lHXazMjQK32z/T+5/wVV2X2ydoXyLhFjDiaiODUQYd7ua87DpsIGIf/mEpiWluCLtyy44g==",
+  "success": true,
+  "projectFilePath": "D:\\PersonalProjects\\React And WebAPI DotNet\\RequestApplication\\RequestApplication\\RequestApplication.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\muhammad.sharique\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\muhammad.sharique\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\muhammad.sharique\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\muhammad.sharique\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\muhammad.sharique\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\muhammad.sharique\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}

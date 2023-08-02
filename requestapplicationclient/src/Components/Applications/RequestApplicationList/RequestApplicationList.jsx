@@ -6,11 +6,20 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
-import TableRow from "@mui/material/TableRow";
+import {TableRow} from "@mui/material";
 import { ApiContext } from "../../../Context/ApiContext";
-import { Trash, Add } from "iconsax-react";
+import { Trash, Add, TableDocument, Calendar } from "iconsax-react";
 import { Button, Col, Spinner  } from "react-bootstrap";
 import Tooltip from "@mui/material/Tooltip";
+import { styled } from "@mui/system";
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  cursor: "pointer",
+  "&:hover": {
+    backgroundColor: "black",
+    color: "white",
+  },
+}));
 
 const RequestApplicationList = ({ sidebarLinks, onChangeToggle }) => {
 
@@ -124,17 +133,20 @@ const RequestApplicationList = ({ sidebarLinks, onChangeToggle }) => {
         </Tooltip>
   
         <br />
-        <Paper sx={{ width: "100%", overflow: "hidden" }}>
+        <Paper sx={{ width: "100%", overflow: "hidden", border:"1px solid #E7E7E7", boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)" }}>
           <TableContainer sx={{ maxHeight: 440 }}>
             <Table stickyHeader aria-label="sticky table">
-              <TableHead>
+              <TableHead >
                 <TableRow>
                   {columns.map((column) => (
                     <TableCell
                       key={column.id}
                       align={column.align}
-                      style={{ minWidth: column.minWidth }}
+                      style={{ minWidth: column.minWidth, color: "#ffffff",  backgroundColor: "#2C426A"}}
                     >
+                      { column.id === 'subjectText' ? <TableDocument size="20" color="white" /> : <></>}
+                      { column.id === 'createdDate' ? <Calendar size="20" color="white" /> : <></>}
+                      
                       {column.label}
                     </TableCell>
                   ))}
@@ -143,20 +155,21 @@ const RequestApplicationList = ({ sidebarLinks, onChangeToggle }) => {
               <TableBody>
                 {allData
                   ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  ?.map((row) => {
+                  ?.map((row, index) => {
                     return (
-                      <TableRow
+                      <StyledTableRow
                         hover
                         role="checkbox"
                         tabIndex={-1}
                         key={row.applicationId}
-                        style={{ cursor: "pointer" }}
+                        sx={{ cursor: "pointer"}}
                       >
                         <TableCell
                           align="left"
                           onClick={() => {
                             openApplication(row.applicationId);
                           }}
+                          style={{ color: "#000000",  backgroundColor: index % 2 == 0 ? "#E5EEFF" : "#DBE8FF"}}
                         >
                           {row.subject}
                           <br />
@@ -167,10 +180,13 @@ const RequestApplicationList = ({ sidebarLinks, onChangeToggle }) => {
                           onClick={() => {
                             openApplication(row.applicationId);
                           }}
+                          style={{ color: "#000000",  backgroundColor: index % 2 == 0 ? "#E5EEFF" : "#DBE8FF"}}
                         >
                           {row.createdDate}
                         </TableCell>
-                        <TableCell align="left" tooltip="Delete Application">
+                        <TableCell 
+                          align="left" 
+                          style={{ color: "#000000",  backgroundColor: index % 2 == 0 ? "#E5EEFF" : "#DBE8FF"}}>
                         <Tooltip title="Delete Application">
                           <Trash
                             size="20"
@@ -181,7 +197,7 @@ const RequestApplicationList = ({ sidebarLinks, onChangeToggle }) => {
                           />
                           </Tooltip>
                         </TableCell>
-                      </TableRow>
+                      </StyledTableRow>
                     );
                   })}
               </TableBody>
@@ -195,7 +211,7 @@ const RequestApplicationList = ({ sidebarLinks, onChangeToggle }) => {
             page={page}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
-            
+            style={{backgroundColor: '#F5F5F5'}}
           />
         </Paper>
       </>

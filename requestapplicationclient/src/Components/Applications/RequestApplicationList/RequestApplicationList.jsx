@@ -23,6 +23,11 @@ const RequestApplicationList = ({ sidebarLinks, onChangeToggle }) => {
   const { SetApplicationId, allApplicationsData, GetAllApplication, DeleteApplication } = useContext(ApiContext);
   const [allData, setAllData] = useState(allApplicationsData);
   const [isLoading, setIsLoading] = useState(true);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(parseInt(localStorage.getItem("rowsPerPage")) || 10);
+  const [linksState, setLinks] = useState({
+    links: [...sidebarLinks],
+  });
 
   useEffect(() => {
     GetAllApplication().then(() => {
@@ -34,11 +39,10 @@ const RequestApplicationList = ({ sidebarLinks, onChangeToggle }) => {
     setAllData(allApplicationsData);
   }, [isLoading]);
 
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [linksState, setLinks] = useState({
-    links: [...sidebarLinks],
-  });
+  useEffect(() => {
+    // Store the selected page size in localStorage whenever it changes
+    localStorage.setItem("rowsPerPage", rowsPerPage);
+  }, [rowsPerPage]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -191,6 +195,7 @@ const RequestApplicationList = ({ sidebarLinks, onChangeToggle }) => {
             page={page}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
+            
           />
         </Paper>
       </>
